@@ -1,6 +1,6 @@
 #packopt name "SJIS-kun"
 
-#include "Drag And Drop.as"
+#include "DragAndDropModule.hsp"
 #include "encode.as"
 #include "lib.hsp"
 
