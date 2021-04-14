@@ -1,0 +1,42 @@
+#packopt name "SJIS-kun"
+
+#include "Drag And Drop.as"
+#include "encode.as"
+#include "lib.hsp"
+
+	screen 0,320,240
+	gsel 0,2
+	title "SJIS-kun v1.0.0"
+
+	// ドロップ時
+	DandD_SetWindow 1
+	DandD_SetLabel *label_DandD
+
+	// 表示
+	font "MS gothic",12,1
+	color 192,192,192:boxf
+	color 255,255,255:boxf 50,50,270,190
+	color 192,192,192:boxf 55,55,265,185
+	color 255,255,255:pos 160,115
+	tmes "ここにファイルをドロップ。"
+	tmes "UTF-8 → Shift-JIS"
+	stop
+
+// ファイルがドロップされた
+*label_DandD
+
+	f1 = DandD_GetPath(0)
+	f2 = f1+"_sjis.txt"
+
+	notesel notedata
+	noteload f1
+	noteunsel
+
+	notedata = utf8n2sjis(notedata)
+	
+	notesel notedata
+	notesave f2
+	noteunsel
+
+	return
+	
